@@ -1,11 +1,23 @@
 const router = require("express").Router();
 const admin = require("firebase-admin");
 const db = admin.firestore();
-db.settings({ ignoreUndefinedProperties: true });
+// db.settings({ ignoreUndefinedProperties: true });
 
 // Add Category
 router.post("/", async (req, res) => {
   try {
+    const categoryName = req.body.categoryName;
+    // Kiểm tra xem sản phẩm đã tồn tại dựa trên categoryName
+    const categoryQuery = await db
+      .collection("category")
+      .where("categoryName", "==", categoryName)
+      .get();
+    if (!categoryQuery.empty) {
+      return res.status(400).send({
+        success: false,
+        msg: `Danh mục  ${categoryName} đã tồn tại.`,
+      });
+    }
     const id = Date.now();
     const data = {
       categoryId: id,
@@ -38,5 +50,9 @@ router.get("/", async (req, res) => {
     }
   })();
 });
+
+
+
+
 
 module.exports = router;
