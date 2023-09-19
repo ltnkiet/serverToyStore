@@ -11,6 +11,13 @@ app.use(express.json());
 
 const cors = require("cors");
 app.use(cors({ origin: true }));
+// pp.use(
+//   cors({
+//     origin: "http://127.0.0.1:5001/toyshop-be6eb/us-central1/app",
+//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//     credentials: true,
+//   })
+// );
 app.use((req, res, next) => {
   res.set("Access-Control-Allow-Origin", "*");
   next();
@@ -22,7 +29,7 @@ admin.initializeApp({
 
 //api endpoint
 app.get("/", (req, res) => {
-  return res.send("Hello World");
+  return res.send("API");
 });
 
 // User

@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { Router } = require("express");
 const admin = require("firebase-admin");
 
 router.get("/jwtVerfication", async (req, res) => {
@@ -37,6 +38,7 @@ const listAllUser = async (nextPageToken) => {
     })
     .catch((err) => console.log(err));
 };
+
 listAllUser();
 router.get("/", async (req, res) => {
   listAllUser();

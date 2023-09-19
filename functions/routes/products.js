@@ -176,7 +176,6 @@ router.get("/getCart/:userId", async (req, res) => {
         .collection("cartItems")
         .doc(`/${userId}/`)
         .collection("items");
-
       let result = [];
 
       await query.get().then((querysnap) => {
@@ -246,6 +245,7 @@ router.post("/updateCart/:user_id", async (req, res) => {
     return res.send({ success: false, msg: `Error: ${error}` });
   }
 });
+
 
 // Route để lấy sản phẩm theo tên danh mục
 router.get("/:categoryName", async (req, res) => {
