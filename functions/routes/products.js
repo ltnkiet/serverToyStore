@@ -246,6 +246,7 @@ router.post("/updateCart/:user_id", async (req, res) => {
   }
 });
 
+router.post("/checkOut", async(req, res) => {})
 
 // Route để lấy sản phẩm theo tên danh mục
 router.get("/:categoryName", async (req, res) => {
