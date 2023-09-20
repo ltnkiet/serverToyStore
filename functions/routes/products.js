@@ -246,7 +246,19 @@ router.post("/updateCart/:user_id", async (req, res) => {
   }
 });
 
-router.post("/checkOut", async(req, res) => {})
+router.post("/createOrders", async (req, res) => {}); 
+
+const deleteCart = async (userId, items) => {
+  items.map(async (data) => {
+    await db
+      .collection("cartItems")
+      .doc(`/${userId}/`)
+      .collection("items")
+      .doc(`/${data.productId}/`)
+      .delete()
+      .then(() => console.log("success"))
+  });
+};
 
 // Route để lấy sản phẩm theo tên danh mục
 router.get("/:categoryName", async (req, res) => {
